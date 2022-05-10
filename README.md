@@ -1,4 +1,18 @@
-This is a fork to convert a CSV from WGS84 to EGSA87 (ΕΓΣΑ87)
+# WGS84 to EGSA87 CSV Converter
+
+This is a fork of egsa87 project that can be used to convert a CSV from WGS84 to EGSA87 (ΕΓΣΑ87)
+
+## Build
+
+```
+$ make
+```
+
+## Use
+
+```
+$ ./calculate input_file.csv output_file.csv
+```
 
 -----------------------
 # egsa87
