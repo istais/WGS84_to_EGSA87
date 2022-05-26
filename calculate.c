@@ -6,15 +6,15 @@
 #include "egsa87.h"
 
 
-void calculate(double phlam[2], FILE * fout){
+void calculate(char * name,  double latitude, double longitude, double phlam[2], FILE * fout){
     double phlam2[2];
     memcpy (phlam2, phlam, 2*1*sizeof(double));
     double xy[2];
     phlam[0]*=M_PI/180.0;
     phlam[1]*=M_PI/180.0;
     wgs84egsa87(phlam, xy);
-    printf("%lf, %lf -> %lf, %lf\n", phlam2[0], phlam2[1], xy[0], xy[1]);
-    fprintf(fout,"%lf, %lf\n", xy[0], xy[1]);
+    printf("%s (%lf, %lf) -> (%lf, %lf)\n", name, phlam2[0], phlam2[1], xy[0], xy[1]);
+    fprintf(fout,"%s, %lf, %lf, %lf, %lf\n", name, latitude, longitude, xy[0], xy[1]);
 }
 
 
@@ -35,16 +35,21 @@ int main (int argc, const char * argv[]) {
     FILE* fp = fopen(argv[1], "r");
     FILE* fout = fopen(argv[2], "w");
  
-    if (!fp)
+    if (!fp){
         printf("Can't open input file\n");
+        return -1;
+    }
 
-    if (!fout)
+    if (!fout){
         printf("Can't open output file\n");
+        return -1;
+    }
  
 
         // Here we have taken size of
         // array 1024 you can modify it
         char buffer[1024];
+        char * name;
  
         int row = 0;
         int column = 0;
@@ -53,7 +58,7 @@ int main (int argc, const char * argv[]) {
             column = 0;
             row++;
             // Splitting the data
-            char* value = strtok(buffer, ", \r\n");
+            char* value = strtok(buffer, ",\r\n");
            
             latitude = 0;
             longitude = 0;
@@ -62,20 +67,24 @@ int main (int argc, const char * argv[]) {
                 // Column 1
                 if (column == 0) {
 
+                  name = value;
+                }
+                if (column == 1) {
+
                   latitude = strtod(value, &ptr);
                 }
  
                 // Column 2
-                if (column == 1) {
+                if (column == 2) {
                    longitude = strtod(value, &ptr);
                 }
  
-                value = strtok(NULL, ", \r\n");
+                value = strtok(NULL, ",\r\n");
                 column++;
             }
-            //printf("%lf %lf\n",latitude, longitude);
+            //printf("%s %lf %lf\n",name, latitude, longitude);
             double phlam[2] = {latitude, longitude};
-            calculate(phlam, fout);
+            calculate(name, latitude, longitude, phlam, fout);
         }
  
         // Close the file
