@@ -33,8 +33,10 @@ python google_mymaps_2_egsa87.py inputfromgoogle.csv
 
 The inputfromgoogle.csv must have the following format:
 
+```
 WKT,name,.....
 "POINT (25.533135 37.145893 0.0)",pointname,....
+```
 
 
 -----------------------
@@ -47,6 +49,16 @@ Export as CSV the points from Google MyMaps. Only the Latitude and Longitude whi
 python google_mymaps_2_egsa87.py inputfromgoogle.csv  google_mymaps_egsa87_output.csv
 ```
 
+```
+WKT,name,.....
+"POINT (25.533135 37.145893 0.0)",pointname,....
+```
+
+The output will have the following format:
+
+```
+name, 25.533135, 37.145893, 1827965.198315, 2890138.776154
+```
 
 -----------------------
 # egsa87
