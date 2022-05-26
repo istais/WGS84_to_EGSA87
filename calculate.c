@@ -44,7 +44,7 @@ int main (int argc, const char * argv[]) {
         printf("Can't open output file\n");
         return -1;
     }
-    fprintf(fout,"name, WGS84 latitude, WGS84 longitude, EGSA87 latitude, EGSA87 longitude");
+    fprintf(fout,"name, WGS84 latitude, WGS84 longitude, EGSA87 latitude, EGSA87 longitude\n");
 
 
         // Here we have taken size of
