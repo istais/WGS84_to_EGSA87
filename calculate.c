@@ -84,7 +84,7 @@ int main (int argc, const char * argv[]) {
                 column++;
             }
             //printf("%s %lf %lf\n",name, latitude, longitude);
-            double phlam[2] = {latitude, longitude};
+            double phlam[2] = {longitude, latitude};
             calculate(name, latitude, longitude, phlam, fout);
         }
  
