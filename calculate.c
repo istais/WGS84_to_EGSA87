@@ -84,6 +84,7 @@ int main (int argc, const char * argv[]) {
             }
             //printf("%s %lf %lf\n",name, latitude, longitude);
             double phlam[2] = {latitude, longitude};
+            fprintf(fout,"name, WGS84 latitude, WGS84 longitude, EGSA87 latitude, EGSA87 longitude");
             calculate(name, latitude, longitude, phlam, fout);
         }
  
