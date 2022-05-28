@@ -69,6 +69,9 @@ The root directory contains Matlab implementations; C ports of the same function
 Code is based on the [icoordstrans](https://github.com/skozan/icoordstrans) library.
 For an overview of spatial referencing, see [this.](https://unstats.un.org/Unsd/geoinfo/UNGEGN/docs/_data_ICAcourses/_HtmlModules/_Documents/D06/documents/D06-03_KnippersPPTeaching.pdf)
 
+# egsa87_2_GML
+Transforms exported points of simple EGSA CSV of format 'name lat lon egsa_lat egsa_lon' to GML polygon for ktimatologio.gr
+
 -----------------------
 
 There is also a sidecar utility to transform Google mymaps points into simple CSV.
