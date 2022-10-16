@@ -21,3 +21,4 @@ else:
 	sys.stdout = original_stdout
 	os.system("./calculate google_mymaps_output.csv "+sys.argv[2])
 	os.system("rm google_mymaps_output.csv")
+	os.system("sort "+sys.argv[2]+" -o "+sys.argv[2])
