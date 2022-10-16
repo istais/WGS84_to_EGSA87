@@ -79,7 +79,7 @@ PART I	25.528107	37.150362	635552.922469	4112357.676770
 To execute:
 
 ```
-python egsa87_2_GML.py test.xml test.gml 
+python egsa87_2_GML.py google_mymaps_egsa87_output.csv google_mymaps_egsa87_output.gml
 ```
 
 The output:
