@@ -2,6 +2,7 @@ import csv
 import sys
 import os
 from decimal import Decimal
+import string
 
 if len(sys.argv) < 2:
 	print("Transforms exported points of simple EGSA CSV of format 'name lat lon egsa_lat egsa_lon' to GML polygon for ktimatologio.gr")
@@ -22,7 +23,7 @@ else:
 		with open(sys.argv[1]) as csvfile:
 			spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
 			for row in spamreader:
-				polygon = polygon +row[3]+" "+row[4]+ " "
+				polygon = polygon +string.strip(row[3])+" "+string.strip(row[4])+ " "
 				if Decimal(row[3]) > Decimal(upper_a):
 					upper_a = row[3]
 				if Decimal(row[3]) < Decimal(lower_a):
@@ -32,16 +33,16 @@ else:
 				if Decimal(row[4]) < Decimal(lower_b):
 					lower_b = row[4]
 				if first_a == 0:
-					first_a = row[3]
-					first_b = row[4]
-			polygon = polygon +first_a+" "+first_b
+					first_a = string.strip(row[3])
+					first_b = string.strip(row[4])
+			polygon = polygon +string.strip(first_a)+" "+string.strip(first_b)
 			print """
 		<?xml version="1.0" encoding="UTF-8"?>
 		<gml:FeatureCollection xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fme="http://www.safe.com/gml/fme" xsi:schemaLocation="http://www.safe.com/gml/fme mesogeion.xsd">
 		<gml:boundedBy>
 		<gml:Envelope srsName="EPSG:2100" srsDimension="2">
-		<gml:lowerCorner>"""+lower_a+""" """+lower_b+"""</gml:lowerCorner>
-		<gml:upperCorner>"""+upper_a+""" """+upper_b+"""</gml:upperCorner>
+		<gml:lowerCorner>"""+string.strip(lower_a)+""" """+string.strip(lower_b)+"""</gml:lowerCorner>
+		<gml:upperCorner>"""+string.strip(upper_a)+""" """+string.strip(upper_b)+"""</gml:upperCorner>
 		</gml:Envelope>
 		</gml:boundedBy>
 		<gml:featureMember>
