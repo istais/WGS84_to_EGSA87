@@ -20,7 +20,7 @@ else:
 	with open(sys.argv[2], 'w') as f: 
 		sys.stdout = f # Change the standard output to the file we created.
 		with open(sys.argv[1]) as csvfile:
-			spamreader = csv.reader(csvfile, delimiter='\t', quotechar='|')
+			spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
 			for row in spamreader:
 				polygon = polygon +row[3]+" "+row[4]+ " "
 				if Decimal(row[3]) > Decimal(upper_a):
